@@ -57,7 +57,6 @@ func UploadSnip(file string, name string) (ResponseData, error) {
 	}
 
 	s := spinner.New(spinner.CharSets[14], 100*time.Millisecond)
-	s.Suffix = " Uploading..."
 	s.Start()
 
 	var fileName string
