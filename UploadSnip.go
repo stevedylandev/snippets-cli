@@ -8,43 +8,46 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
+
+	"github.com/briandowns/spinner"
 )
 
 var languageMap = map[string]string{
-	".sh":   "shell",
-	".c":    "c",
-	".cs":   "csharp",
-	".css":  "css",
-	".elm":  "elm",
-	".erl":  "erlang",
-	".go":   "go",
-	".hs":   "haskell",
-	".html": "html",
-	".java": "java",
-	".js":   "javascript",
-	".json": "json",
-	".jsx":  "jsx",
-	".kt":   "kotlin",
-	".lua":  "lua",
-	".md":   "markdown",
-	".ps1":  "powershell",
-	".php":  "php",
-	".py":   "python",
-	".r":    "r",
-	".rb":   "ruby",
-	".rs":   "rust",
-	".scala": "scala",
-	".sol":  "solidity",
-	".sql":  "sql",
-	".swift": "swift",
+	".sh":     "shell",
+	".c":      "c",
+	".cs":     "csharp",
+	".css":    "css",
+	".elm":    "elm",
+	".erl":    "erlang",
+	".go":     "go",
+	".hs":     "haskell",
+	".html":   "html",
+	".java":   "java",
+	".js":     "javascript",
+	".json":   "json",
+	".jsx":    "jsx",
+	".kt":     "kotlin",
+	".lua":    "lua",
+	".md":     "markdown",
+	".ps1":    "powershell",
+	".php":    "php",
+	".py":     "python",
+	".r":      "r",
+	".rb":     "ruby",
+	".rs":     "rust",
+	".scala":  "scala",
+	".sol":    "solidity",
+	".sql":    "sql",
+	".swift":  "swift",
 	".svelte": "svelte",
-	".toml": "toml",
-	".ts":   "typescript",
-	".tsx":  "tsx",
-	".vue":  "vue",
-	".xml":  "xml",
-	".yaml": "yaml",
-	".yml":  "yaml",
+	".toml":   "toml",
+	".ts":     "typescript",
+	".tsx":    "tsx",
+	".vue":    "vue",
+	".xml":    "xml",
+	".yaml":   "yaml",
+	".yml":    "yaml",
 }
 
 func UploadSnip(file string, name string) (ResponseData, error) {
@@ -53,9 +56,13 @@ func UploadSnip(file string, name string) (ResponseData, error) {
 		return ResponseData{}, fmt.Errorf("failed to read file: %w", err)
 	}
 
+	s := spinner.New(spinner.CharSets[14], 100*time.Millisecond)
+	s.Suffix = " Uploading..."
+	s.Start()
+
 	var fileName string
-	
-	if name == "nil" { 
+
+	if name == "nil" {
 		fileName = filepath.Base(file)
 	} else {
 		fileName = name
@@ -97,6 +104,7 @@ func UploadSnip(file string, name string) (ResponseData, error) {
 	if err != nil {
 		return ResponseData{}, fmt.Errorf("failed to decode the response: %w", err)
 	}
+	s.Stop()
 
 	fmt.Println("https://snippets.so/snip/" + response.IpfsHash)
 
