@@ -10,6 +10,7 @@ Quickly upload local code files and get links in return that you can view and sh
 
 ### Mac OS
 ```
+brew tap stevedylandev/snippets-cli
 brew install snippets-cli
 ```
 
