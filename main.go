@@ -2,9 +2,10 @@ package main
 
 import (
 	"errors"
-	"github.com/urfave/cli/v2"
 	"log"
 	"os"
+
+	"github.com/urfave/cli/v2"
 )
 
 type ResponseData struct {
@@ -23,13 +24,13 @@ type UploadPayload struct {
 func main() {
 	app := &cli.App{
 		Name:  "snip",
-		Usage: "A CLI for snippets.so, allowing quick file uploads that are turned into snips.",
+		Usage: "A CLI for snippets.so, a clean and simple code sharing tool.",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:    "name",
 				Aliases: []string{"n"},
 				Value:   "nil",
-				Usage:   "Custom name for snippet",
+				Usage:   "Custom name for snippet. If none provided it will default to the name of the file.",
 			},
 		},
 		Action: func(ctx *cli.Context) error {
