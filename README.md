@@ -15,7 +15,7 @@ brew install snippets-cli
 
 ### Go
 ```
-git clone https://github.com/stevedylandev/snippets-cli && cd snippets-cli && go insall .
+git clone https://github.com/stevedylandev/snippets-cli && cd snippets-cli && go install .
 ```
 
 ## Usage
