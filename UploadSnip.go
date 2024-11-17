@@ -105,7 +105,7 @@ func UploadSnip(file string, name string) (ResponseData, error) {
 	}
 	s.Stop()
 
-	fmt.Println("https://snippets.so/snip/" + response.IpfsHash)
+	fmt.Println("https://snippets.so/snip/" + response.Slug)
 
 	return response, nil
 }

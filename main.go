@@ -9,10 +9,8 @@ import (
 )
 
 type ResponseData struct {
-	IpfsHash    string `json:"IpfsHash"`
-	PinSize     int    `json:"PinSize"`
-	Timestamp   string `json:"Timestamp"`
-	IsDuplicate bool   `json:"isDuplicate"`
+	IpfsHash string `json:"IpfsHash"`
+	Slug     string `json:"slug"`
 }
 
 type UploadPayload struct {
